@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIVOLTEK软件下载</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+
+        /* 背景+蒙版组合 - 增强效果 */
+        body {
+            position: relative; 
+            background-image: url('background.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        /* 白色蒙版层 - 降低透明度 */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.5);
+            z-index: 0; 
+            backdrop-filter: blur(2px);
+        }
+
+        /* 容器样式 - 增强玻璃效果 */
+        .container {
+            position: relative; 
+            z-index: 1; 
+            max-width: 1000px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            padding: 40px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        /* 标题样式 */
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(52, 152, 219, 0.5);
+            font-weight: 600;
+            font-size: 2.2rem;
+            position: relative;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            border-radius: 3px;
+        }
+
+        /* 顶部功能栏 */
+        .top-bar {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        /* 日夜模式切换按钮 */
+        .mode-toggle {
+            display: flex;
+            align-items: center;
+        }
+        .mode-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .mode-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .mode-btn i {
+            margin-right: 6px;
+        }
+
+        /* 语言选择下拉框 - 优化白天模式显示 */
+        .lang-select {
+            position: relative;
+        }
+        .lang-select select {
+            padding: 8px 16px;
+            padding-left: 42px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.7);
+            color: #2c3e50;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            font-weight: 500;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        .lang-select select:hover {
+            background: rgba(255, 255, 255, 0.9);
+        }
+        .lang-select select option {
+            background: rgba(255, 255, 255, 0.95);
+            color: #2c3e50;
+        }
+        .lang-select::before {
+            content: "";
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 14px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 2;
+        }
+        /* 根据当前选择的语言显示对应国旗 */
+        .lang-select[data-lang="zh"]::before {
+            background-image: url('https://cdn-icons-png.flaticon.com/512/195/195830.png');
+        }
+        .lang-select[data-lang="en"]::before {
+            background-image: url('https://cdn-icons-png.flaticon.com/512/197/197574.png');
+        }
+        .lang-select[data-lang="es"]::before {
+            background-image: url('https://cdn-icons-png.flaticon.com/512/196/196673.png');
+        }
+
+        /* 切换选项卡样式 - 调整按钮大小 */
+        .tab-switcher {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            width: 80%;
+            max-width: 350px;
+            margin: 0 auto 30px;
+            backdrop-filter: blur(5px);
+        }
+        .tab-btn {
+            padding: 8px 20px;
+            border: none;
+            background: transparent;
+            color: #2c3e50;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            text-align: center;
+        }
+        .tab-btn.active {
+            color: white;
+        }
+        .tab-slider {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            height: calc(100% - 8px);
+            width: calc(50% - 4px);
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            border-radius: 25px;
+            transition: all 0.4s ease-in-out;
+            z-index: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .tab-btn:not(.active):hover {
+            color: #3498db;
+        }
+
+        /* 内容区域样式 */
+        .content-area {
+            position: relative;
+            min-height: 400px;
+            overflow: hidden;
+        }
+        .content-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            transition: transform 0.5s ease-in-out;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(5px);
+        }
+        .pc-panel {
+            transform: translateX(0);
+        }
+        .driver-panel {
+            transform: translateX(100%);
+        }
+        .pc-panel.hide {
+            transform: translateX(-100%);
+        }
+        .driver-panel.show {
+            transform: translateX(0);
+        }
+
+        /* 软件列表样式 */
+        .software-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .software-item {
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            border-left: 4px solid #3498db;
+            backdrop-filter: blur(3px);
+        }
+        .software-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+        }
+        .software-number {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+        .software-number::before {
+            content: "•";
+            color: #3498db;
+            font-size: 24px;
+            margin-right: 12px;
+        }
+
+        /* 下载按钮样式 */
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .download-btn i {
+            margin-right: 6px;
+        }
+        
+        /* 驱动下载样式 */
+        .driver-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .driver-item {
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            border-left: 4px solid #2ecc71;
+            backdrop-filter: blur(3px);
+        }
+        .driver-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+        }
+        .driver-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2ecc71, #3498db);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .driver-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .driver-btn i {
+            margin-right: 8px;
+        }
+
+        /* 页脚样式 */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #7f8c8d;
+            font-size: 14px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* 响应式设计 - 优化移动端 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 20px auto;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+                padding-bottom: 15px;
+            }
+            
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 10px;
+            }
+            
+            .software-list,
+            .driver-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .software-item,
+            .driver-item {
+                padding: 12px 15px;
+            }
+            
+            .software-number {
+                font-size: 15px;
+                max-width: 60%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            
+            .download-btn,
+            .driver-btn {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            
+            .tab-switcher {
+                width: 90%;
+            }
+            
+            .tab-btn {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+        }
+
+        /* 夜间模式 */
+        body.dark-mode {
+            color: #e0e0e0;
+        }
+        body.dark-mode::before {
+            background: rgba(0, 0, 0, 0.7); 
+            backdrop-filter: blur(5px);
+        }
+        body.dark-mode .container {
+            background-color: rgba(30, 30, 40, 0.85);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        body.dark-mode h1 {
+            color: #f8f9fa;
+        }
+        body.dark-mode h1::after {
+            background: linear-gradient(90deg, #2ecc71, #3498db);
+        }
+        body.dark-mode .software-number {
+            color: #f8f9fa;
+        }
+        body.dark-mode .download-btn {
+            background: linear-gradient(135deg, #2ecc71, #3498db);
+        }
+        body.dark-mode .mode-btn {
+            background: linear-gradient(135deg, #2ecc71, #3498db);
+        }
+        body.dark-mode .lang-select select {
+            background-color: rgba(45, 55, 72, 0.8);
+            color: white;
+            border-color: rgba(74, 85, 104, 0.5);
+        }
+        body.dark-mode .lang-select select option {
+            background: rgba(45, 55, 72, 0.95);
+            color: white;
+        }
+        body.dark-mode .driver-btn {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+        }
+        body.dark-mode .software-item,
+        body.dark-mode .driver-item {
+            background-color: rgba(45, 55, 72, 0.7);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        body.dark-mode .software-item {
+            border-left-color: #2ecc71;
+        }
+        body.dark-mode .driver-item {
+            border-left-color: #3498db;
+        }
+        body.dark-mode .content-panel {
+            background-color: rgba(45, 55, 72, 0.7);
+        }
+        body.dark-mode .tab-switcher {
+            background: rgba(74, 85, 104, 0.6);
+        }
+        body.dark-mode .tab-btn {
+            color: #f8f9fa;
+        }
+        body.dark-mode .tab-btn:not(.active):hover {
+            color: #2ecc71;
+        }
+        body.dark-mode .tab-slider {
+            background: linear-gradient(135deg, #2ecc71, #3498db);
+        }
+        body.dark-mode .footer {
+            color: #a0aec0;
+            border-top-color: rgba(74, 85, 104, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部功能栏：模式切换 + 语言切换 -->
+        <div class="top-bar">
+            <!-- 日夜模式切换（单一按钮） -->
+            <div class="mode-toggle">
+                <button id="modeBtn" class="mode-btn"><i class="fas fa-moon"></i>黑夜模式</button>
+            </div>
+
+            <!-- 语言选择（改为下拉框） -->
+            <div class="lang-select" data-lang="zh">
+                <select id="langSelect">
+                    <option value="zh">简体中文 (CH)</option>
+                    <option value="en">English (EN)</option>
+                    <option value="es">Español (ES)</option>
+                </select>
+            </div>
+        </div>
+
+        <h1>LIVOLTEK软件下载</h1>
+        
+        <!-- 切换选项卡（调整后尺寸） -->
+        <div class="tab-switcher">
+            <div class="tab-slider"></div>
+            <button id="pcTab" class="tab-btn active">上位机下载</button>
+            <button id="driverTab" class="tab-btn">驱动下载</button>
+        </div>
+
+        <!-- 内容区域 -->
+        <div class="content-area">
+            <!-- 上位机下载面板 -->
+            <div id="pcPanel" class="content-panel pc-panel">
+                <ul class="software-list">
+                    <li class="software-item">
+                        <span class="software-number">BLF-B51100</span>
+                        <a href="#" class="download-btn" data-lang-key="download">
+                            <i class="fas fa-download"></i>下载
+                        </a>
+                    </li>
+                    <li class="software-item">
+                        <span class="software-number">BLF-B52200</span>
+                        <a href="#" class="download-btn" data-lang-key="download">
+                            <i class="fas fa-download"></i>下载
+                        </a>
+                    </li>
+                    <li class="software-item">
+                        <span class="software-number">BLF-C61300</span>
+                        <a href="#" class="download-btn" data-lang-key="download">
+                            <i class="fas fa-download"></i>下载
+                        </a>
+                    </li>
+                    <li class="software-item">
+                        <span class="software-number">BLF-D71400</span>
+                        <a href="#" class="download-btn" data-lang-key="download">
+                            <i class="fas fa-download"></i>下载
+                        </a>
+                    </li>
+                    <li class="software-item">
+                        <span class="software-number">BLF-E82500</span>
+                        <a href="#" class="download-btn" data-lang-key="download">
+                            <i class="fas fa-download"></i>下载
+                        </a>
+                    </li>
+                    <li class="software-item">
+                        <span class="software-number">BLF-F93600</span>
+                        <a href="#" class="download-btn" data-lang-key="download">
+                            <i class="fas fa-download"></i>下载
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- 驱动下载面板 -->
+            <div id="driverPanel" class="content-panel driver-panel">
+                <div class="driver-grid">
+                    <div class="driver-item">
+                        <a href="https://www.zlg.cn/index.php/can/down/down/id/22.html" target="_blank" class="driver-btn">
+                            <i class="fas fa-download"></i> USBCANII驱动
+                        </a>
+                    </div>
+                    <div class="driver-item">
+                        <a href="https://www.silabs.com/developer-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads" target="_blank" class="driver-btn">
+                            <i class="fas fa-download"></i> 485驱动
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>版权所有 &copy; 2025 LIVOLTEK软件下载中心</p>
+        </div>
+    </div>
+
+    <script>
+        // 1. 日夜模式切换（单一按钮）
+        const modeBtn = document.getElementById('modeBtn');
+        const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const langSelectEl = document.querySelector('.lang-select');
+        
+        // 初始化：跟随系统
+        if (isSystemDark) {
+            document.body.classList.add('dark-mode');
+            updateModeButtonText();
+        }
+
+        // 监听系统模式变化
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!document.body.classList.contains('user-toggled')) {
+                document.body.classList.toggle('dark-mode', e.matches);
+                updateModeButtonText();
+            }
+        });
+
+        // 手动切换逻辑
+        modeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            document.body.classList.add('user-toggled');
+            updateModeButtonText();
+        });
+
+        // 2. 语言切换（下拉框）
+        const langSelect = document.getElementById('langSelect');
+        const i18n = {
+            zh: {
+                title: 'LIVOLTEK软件下载',
+                footer: '版权所有 &copy; 2025 LIVOLTEK软件下载中心',
+                download: '下载',
+                driver1: 'USBCANII驱动',
+                driver2: '485驱动',
+                pcTab: '上位机下载',
+                driverTab: '驱动下载',
+                modeBtn: {
+                    dark: '<i class="fas fa-sun"></i>白天模式',
+                    light: '<i class="fas fa-moon"></i>黑夜模式'
+                },
+                items: [
+                    'BLF-B51100', 'BLF-B52200', 'BLF-C61300', 
+                    'BLF-D71400', 'BLF-E82500', 'BLF-F93600'
+                ]
+            },
+            en: {
+                title: 'LIVOLTEK Software Download',
+                footer: 'All rights reserved &copy; 2025 LIVOLTEK Software Download Center',
+                download: 'Download',
+                driver1: 'USBCANII Driver',
+                driver2: '485 Driver',
+                pcTab: 'PC Software',
+                driverTab: 'Drivers',
+                modeBtn: {
+                    dark: '<i class="fas fa-sun"></i>Light Mode',
+                    light: '<i class="fas fa-moon"></i>Dark Mode'
+                },
+                items: [
+                    'BLF-B51100', 'BLF-B52200', 'BLF-C61300', 
+                    'BLF-D71400', 'BLF-E82500', 'BLF-F93600'
+                ]
+            },
+            es: {
+                title: 'Descarga de Software LIVOLTEK',
+                footer: 'Todos los derechos reservados &copy; 2025 Centro de Descarga de Software LIVOLTEK',
+                download: 'Descargar',
+                driver1: 'Controlador USBCANII',
+                driver2: 'Controlador 485',
+                pcTab: 'Software de PC',
+                driverTab: 'Controladores',
+                modeBtn: {
+                    dark: '<i class="fas fa-sun"></i>Modo Claro',
+                    light: '<i class="fas fa-moon"></i>Modo Oscuro'
+                },
+                items: [
+                    'BLF-B51100', 'BLF-B52200', 'BLF-C61300', 
+                    'BLF-D71400', 'BLF-E82500', 'BLF-F93600'
+                ]
+            }
+        };
+
+        // 更新模式按钮文本的辅助函数
+        function updateModeButtonText() {
+            const currentLang = langSelect.value;
+            modeBtn.innerHTML = document.body.classList.contains('dark-mode') 
+                ? i18n[currentLang].modeBtn.dark 
+                : i18n[currentLang].modeBtn.light;
+        }
+
+        // 3. 选项卡切换功能
+        const pcTab = document.getElementById('pcTab');
+        const driverTab = document.getElementById('driverTab');
+        const pcPanel = document.getElementById('pcPanel');
+        const driverPanel = document.getElementById('driverPanel');
+        const tabSlider = document.querySelector('.tab-slider');
+
+        // 初始化选项卡位置
+        updateTabSliderPosition();
+
+        pcTab.addEventListener('click', () => {
+            if (!pcTab.classList.contains('active')) {
+                pcTab.classList.add('active');
+                driverTab.classList.remove('active');
+                pcPanel.classList.remove('hide');
+                driverPanel.classList.remove('show');
+                updateTabSliderPosition();
+            }
+        });
+
+        driverTab.addEventListener('click', () => {
+            if (!driverTab.classList.contains('active')) {
+                driverTab.classList.add('active');
+                pcTab.classList.remove('active');
+                pcPanel.classList.add('hide');
+                driverPanel.classList.add('show');
+                updateTabSliderPosition();
+            }
+        });
+
+        // 更新选项卡滑块位置
+        function updateTabSliderPosition() {
+            const activeTab = document.querySelector('.tab-btn.active');
+            if (activeTab) {
+                const tabRect = activeTab.getBoundingClientRect();
+                const containerRect = document.querySelector('.tab-switcher').getBoundingClientRect();
+                tabSlider.style.width = `${tabRect.width}px`;
+                tabSlider.style.left = `${tabRect.left - containerRect.left}px`;
+            }
+        }
+
+        // 4. 初始化语言（根据系统语言或默认中文）
+        function setLanguage(lang = 'zh') {
+            document.querySelector('h1').textContent = i18n[lang].title;
+            document.querySelector('.footer p').textContent = i18n[lang].footer;
+            
+            // 更新下载按钮文本
+            document.querySelectorAll('.download-btn').forEach(btn => {
+                btn.innerHTML = `<i class="fas fa-download"></i>${i18n[lang].download}`;
+            });
+            
+            // 更新驱动按钮文本
+            const driverBtns = document.querySelectorAll('.driver-btn');
+            if (driverBtns.length >= 1) {
+                driverBtns[0].innerHTML = `<i class="fas fa-download"></i>${i18n[lang].driver1}`;
+            }
+            if (driverBtns.length >= 2) {
+                driverBtns[1].innerHTML = `<i class="fas fa-download"></i>${i18n[lang].driver2}`;
+            }
+            
+            // 更新软件项目号
+            const items = document.querySelectorAll('.software-number');
+            items.forEach((item, index) => {
+                item.textContent = i18n[lang].items[index];
+            });
+            
+            // 更新选项卡文本
+            pcTab.textContent = i18n[lang].pcTab;
+            driverTab.textContent = i18n[lang].driverTab;
+            
+            // 更新模式按钮文本
+            updateModeButtonText();
+            
+            // 更新下拉框选中状态
+            langSelect.value = lang;
+            
+            // 更新国旗图标
+            langSelectEl.setAttribute('data-lang', lang);
+        }
+        
+        // 检测系统语言并设置初始语言
+        function detectSystemLanguage() {
+            const userLang = navigator.language || navigator.userLanguage;
+            if (userLang.startsWith('zh')) {
+                return 'zh';
+            } else if (userLang.startsWith('en')) {
+                return 'en';
+            } else if (userLang.startsWith('es')) {
+                return 'es';
+            }
+            return 'zh'; // 默认中文
+        }
+        
+        // 初始化语言
+        setLanguage(detectSystemLanguage());
+
+        // 监听语言切换
+        langSelect.addEventListener('change', () => {
+            setLanguage(langSelect.value);
+        });
+
+        // 监听窗口大小变化，更新选项卡滑块位置
+        window.addEventListener('resize', updateTabSliderPosition);
+    </script>
+</body>
+</html>
