@@ -244,21 +244,20 @@
             transform: translateX(0);
         }
 
-        /* 软件列表样式 */
+        /* 软件列表样式 - 修改为垂直布局 */
         .software-list {
             list-style: none;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 15px;
         }
         .software-item {
-            padding: 15px 20px;
+            padding: 20px;
             background: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
             transition: all 0.3s;
             border-left: 4px solid #3498db;
             backdrop-filter: blur(3px);
@@ -267,6 +266,12 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
             background: rgba(255, 255, 255, 0.9);
+        }
+        .software-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
         }
         .software-number {
             font-weight: 600;
@@ -280,6 +285,17 @@
             color: #3498db;
             font-size: 24px;
             margin-right: 12px;
+        }
+        .software-description {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            padding-left: 36px;
+        }
+        .software-footer {
+            display: flex;
+            justify-content: flex-end;
         }
 
         /* 下载按钮样式 */
@@ -349,6 +365,18 @@
             margin-right: 8px;
         }
 
+        /* 版本信息标签 */
+        .version-tag {
+            display: inline-block;
+            background: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
         /* 页脚样式 */
         .footer {
             text-align: center;
@@ -385,15 +413,16 @@
             
             .software-item,
             .driver-item {
-                padding: 12px 15px;
+                padding: 15px;
             }
             
             .software-number {
                 font-size: 15px;
-                max-width: 60%;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
+            }
+            
+            .software-description {
+                font-size: 13px;
+                padding-left: 0;
             }
             
             .download-btn,
@@ -409,6 +438,11 @@
             .tab-btn {
                 padding: 8px 15px;
                 font-size: 14px;
+            }
+            
+            .version-tag {
+                display: block;
+                margin: 5px 0 0 0;
             }
         }
 
@@ -432,6 +466,9 @@
         }
         body.dark-mode .software-number {
             color: #f8f9fa;
+        }
+        body.dark-mode .software-description {
+            color: #b0b0b0;
         }
         body.dark-mode .download-btn {
             background: linear-gradient(135deg, #2ecc71, #3498db);
@@ -475,11 +512,15 @@
             color: #2ecc71;
         }
         body.dark-mode .tab-slider {
-            background: linear-gradient(135deg, #2ecc71, #3498db);
+            background: linear-gradient(135deg, #2ecc71, #3498db;
         }
         body.dark-mode .footer {
             color: #a0aec0;
             border-top-color: rgba(74, 85, 104, 0.5);
+        }
+        body.dark-mode .version-tag {
+            background: rgba(46, 204, 113, 0.1);
+            color: #2ecc71;
         }
     </style>
 </head>
@@ -517,40 +558,70 @@
             <div id="pcPanel" class="content-panel pc-panel">
                 <ul class="software-list">
                     <li class="software-item">
-                        <span class="software-number">BLF-B51100</span>
-                        <a href="#" class="download-btn" data-lang-key="download">
-                            <i class="fas fa-download"></i>下载
-                        </a>
+                        <div class="software-header">
+                            <span class="software-number">LIVOLTEK LV BMS Upper <span class="version-tag">v2.0.0</span></span>
+                            <a href="./Resource/LIVOLTEK LV BMS Upper.7z" class="download-btn" data-lang-key="download">
+                                <i class="fas fa-download"></i>下载
+                            </a>
+                        </div>
+                        <p class="software-description">
+                            适配自研低压电池系列，支持BMS数据实时监控、参数配置、故障诊断等功能，适用于BLF-B5100系列产品。
+                        </p>
                     </li>
                     <li class="software-item">
-                        <span class="software-number">BLF-B52200</span>
-                        <a href="#" class="download-btn" data-lang-key="download">
-                            <i class="fas fa-download"></i>下载
-                        </a>
+                        <div class="software-header">
+                            <span class="software-number">BLF-B52200 <span class="version-tag">v2.8.5</span></span>
+                            <a href="#" class="download-btn" data-lang-key="download">
+                                <i class="fas fa-download"></i>下载
+                            </a>
+                        </div>
+                        <p class="software-description">
+                            高压电池管理系统上位机软件，支持多模块并联管理，提供完整的电池生命周期管理解决方案。
+                        </p>
                     </li>
                     <li class="software-item">
-                        <span class="software-number">BLF-C61300</span>
-                        <a href="#" class="download-btn" data-lang-key="download">
-                            <i class="fas fa-download"></i>下载
-                        </a>
+                        <div class="software-header">
+                            <span class="software-number">BLF-C61300 <span class="version-tag">v4.1.0</span></span>
+                            <a href="#" class="download-btn" data-lang-key="download">
+                                <i class="fas fa-download"></i>下载
+                            </a>
+                        </div>
+                        <p class="software-description">
+                            储能系统专用上位机，支持能量管理、充放电策略配置、历史数据查询等功能，适用于工商业储能场景。
+                        </p>
                     </li>
                     <li class="software-item">
-                        <span class="software-number">BLF-D71400</span>
-                        <a href="#" class="download-btn" data-lang-key="download">
-                            <i class="fas fa-download"></i>下载
-                        </a>
+                        <div class="software-header">
+                            <span class="software-number">BLF-D71400 <span class="version-tag">v1.5.2</span></span>
+                            <a href="#" class="download-btn" data-lang-key="download">
+                                <i class="fas fa-download"></i>下载
+                            </a>
+                        </div>
+                        <p class="software-description">
+                            动力电池测试平台配套软件，支持充放电测试、性能分析、报告生成等功能，满足研发测试需求。
+                        </p>
                     </li>
                     <li class="software-item">
-                        <span class="software-number">BLF-E82500</span>
-                        <a href="#" class="download-btn" data-lang-key="download">
-                            <i class="fas fa-download"></i>下载
-                        </a>
+                        <div class="software-header">
+                            <span class="software-number">BLF-E82500 <span class="version-tag">v5.0.0</span></span>
+                            <a href="#" class="download-btn" data-lang-key="download">
+                                <i class="fas fa-download"></i>下载
+                            </a>
+                        </div>
+                        <p class="software-description">
+                            新一代电池管理平台，集成AI算法，支持预测性维护、能效优化等高级功能，适用于智能微网系统。
+                        </p>
                     </li>
                     <li class="software-item">
-                        <span class="software-number">BLF-F93600</span>
-                        <a href="#" class="download-btn" data-lang-key="download">
-                            <i class="fas fa-download"></i>下载
-                        </a>
+                        <div class="software-header">
+                            <span class="software-number">BLF-F93600 <span class="version-tag">v2.3.7</span></span>
+                            <a href="#" class="download-btn" data-lang-key="download">
+                                <i class="fas fa-download"></i>下载
+                            </a>
+                        </div>
+                        <p class="software-description">
+                            便携式电池检测工具配套软件，支持蓝牙连接，提供快速诊断和现场维护功能，适用于售后服务场景。
+                        </p>
                     </li>
                 </ul>
             </div>
@@ -620,9 +691,14 @@
                     light: '<i class="fas fa-moon"></i>黑夜模式'
                 },
                 items: [
-                    'BLF-B51100', 'BLF-B52200', 'BLF-C61300', 
-                    'BLF-D71400', 'BLF-E82500', 'BLF-F93600'
-                ]
+                    {name: 'BLF-B51100', desc: '适配自研低压电池系列，支持BMS数据实时监控、参数配置、故障诊断等功能，适用于BLF-B5100系列产品。'},
+                    {name: 'BLF-B52200', desc: '高压电池管理系统上位机软件，支持多模块并联管理，提供完整的电池生命周期管理解决方案。'},
+                    {name: 'BLF-C61300', desc: '储能系统专用上位机，支持能量管理、充放电策略配置、历史数据查询等功能，适用于工商业储能场景。'},
+                    {name: 'BLF-D71400', desc: '动力电池测试平台配套软件，支持充放电测试、性能分析、报告生成等功能，满足研发测试需求。'},
+                    {name: 'BLF-E82500', desc: '新一代电池管理平台，集成AI算法，支持预测性维护、能效优化等高级功能，适用于智能微网系统。'},
+                    {name: 'BLF-F93600', desc: '便携式电池检测工具配套软件，支持蓝牙连接，提供快速诊断和现场维护功能，适用于售后服务场景。'}
+                ],
+                versions: ['v3.2.1', 'v2.8.5', 'v4.1.0', 'v1.5.2', 'v5.0.0', 'v2.3.7']
             },
             en: {
                 title: 'LIVOLTEK Software Download',
@@ -637,9 +713,14 @@
                     light: '<i class="fas fa-moon"></i>Dark Mode'
                 },
                 items: [
-                    'BLF-B51100', 'BLF-B52200', 'BLF-C61300', 
-                    'BLF-D71400', 'BLF-E82500', 'BLF-F93600'
-                ]
+                    {name: 'BLF-B51100', desc: 'Compatible with our low-voltage battery series, supporting real-time BMS monitoring, parameter configuration, fault diagnosis, etc. Suitable for BLF-B5100 series products.'},
+                    {name: 'BLF-B52200', desc: 'High-voltage BMS PC software, supporting multi-module parallel management, providing complete battery lifecycle management solutions.'},
+                    {name: 'BLF-C61300', desc: 'Dedicated software for energy storage systems, supporting energy management, charge/discharge strategy configuration, historical data query, suitable for commercial & industrial energy storage scenarios.'},
+                    {name: 'BLF-D71400', desc: 'Power battery testing platform software, supporting charge/discharge testing, performance analysis, report generation, meeting R&D testing requirements.'},
+                    {name: 'BLF-E82500', desc: 'Next-gen battery management platform with AI algorithms, supporting predictive maintenance, energy efficiency optimization, suitable for smart microgrid systems.'},
+                    {name: 'BLF-F93600', desc: 'Portable battery diagnostic tool software, supporting Bluetooth connection, providing quick diagnosis and field maintenance, suitable for after-sales service scenarios.'}
+                ],
+                versions: ['v3.2.1', 'v2.8.5', 'v4.1.0', 'v1.5.2', 'v5.0.0', 'v2.3.7']
             },
             es: {
                 title: 'Descarga de Software LIVOLTEK',
@@ -654,9 +735,14 @@
                     light: '<i class="fas fa-moon"></i>Modo Oscuro'
                 },
                 items: [
-                    'BLF-B51100', 'BLF-B52200', 'BLF-C61300', 
-                    'BLF-D71400', 'BLF-E82500', 'BLF-F93600'
-                ]
+                    {name: 'BLF-B51100', desc: 'Compatible con nuestra serie de baterías de baja tensión, soporta monitoreo en tiempo real del BMS, configuración de parámetros, diagnóstico de fallas, etc. Adecuado para productos de la serie BLF-B5100.'},
+                    {name: 'BLF-B52200', desc: 'Software de PC para BMS de alta tensión, compatible con gestión paralela de múltiples módulos, proporcionando soluciones completas de gestión del ciclo de vida de la batería.'},
+                    {name: 'BLF-C61300', desc: 'Software dedicado para sistemas de almacenamiento de energía, compatible con gestión de energía, configuración de estrategias de carga/descarga, consulta de datos históricos, adecuado para escenarios de almacenamiento de energía comercial e industrial.'},
+                    {name: 'BLF-D71400', desc: 'Software de plataforma de prueba de baterías de potencia, compatible con pruebas de carga/descarga, análisis de rendimiento, generación de informes, que cumple con los requisitos de prueba de I+D.'},
+                    {name: 'BLF-E82500', desc: 'Plataforma de gestión de baterías de próxima generación con algoritmos de IA, compatible con mantenimiento predictivo, optimización de eficiencia energética, adecuada para sistemas de microrredes inteligentes.'},
+                    {name: 'BLF-F93600', desc: 'Software de herramienta de diagnóstico de baterías portátil, compatible con conexión Bluetooth, proporcionando diagnóstico rápido y mantenimiento en campo, adecuado para escenarios de servicio postventa.'}
+                ],
+                versions: ['v3.2.1', 'v2.8.5', 'v4.1.0', 'v1.5.2', 'v5.0.0', 'v2.3.7']
             }
         };
 
@@ -728,10 +814,20 @@
                 driverBtns[1].innerHTML = `<i class="fas fa-download"></i>${i18n[lang].driver2}`;
             }
             
-            // 更新软件项目号
-            const items = document.querySelectorAll('.software-number');
+            // 更新软件项目信息
+            const items = document.querySelectorAll('.software-item');
             items.forEach((item, index) => {
-                item.textContent = i18n[lang].items[index];
+                const header = item.querySelector('.software-number');
+                const desc = item.querySelector('.software-description');
+                const version = item.querySelector('.version-tag');
+                
+                header.textContent = i18n[lang].items[index].name;
+                desc.textContent = i18n[lang].items[index].desc;
+                version.textContent = i18n[lang].versions[index];
+                
+                // 重新插入版本标签
+                header.innerHTML = i18n[lang].items[index].name + 
+                    ` <span class="version-tag">${i18n[lang].versions[index]}</span>`;
             });
             
             // 更新选项卡文本
