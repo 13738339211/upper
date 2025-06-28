@@ -215,7 +215,7 @@
         /* 内容区域样式 */
         .content-area {
             position: relative;
-            min-height: 400px;
+            min-height: 800px;
             overflow: hidden;
         }
         .content-panel {
@@ -290,7 +290,7 @@
             color: #555;
             font-size: 14px;
             line-height: 1.5;
-            margin-bottom: 15px;
+            margin-bottom: 0px;
             padding-left: 36px;
         }
         .software-footer {
@@ -565,7 +565,7 @@
                             </a>
                         </div>
                         <p class="software-description">
-                            适配自研低压电池系列，支持BMS数据实时监控、参数配置、故障诊断等功能，适用于BLF-B5100系列产品。
+                            适配自研低压电池系列，支持BMS数据实时监控、参数配置、故障诊断等功能，适用于BLF-B5100系列产品。替换原先的BMSTool上位机软件。
                         </p>
                     </li>
                     <li class="software-item">
@@ -630,13 +630,18 @@
             <div id="driverPanel" class="content-panel driver-panel">
                 <div class="driver-grid">
                     <div class="driver-item">
-                        <a href="https://www.zlg.cn/index.php/can/down/down/id/22.html" target="_blank" class="driver-btn">
-                            <i class="fas fa-download"></i> USBCANII驱动
+                        <a href="https://manual.zlg.cn/web/#/146" target="_blank" class="driver-btn">
+                            <i class="fas fa-download"></i> ZLG CAN卡驱动
                         </a>
                     </div>
                     <div class="driver-item">
                         <a href="https://www.silabs.com/developer-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads" target="_blank" class="driver-btn">
-                            <i class="fas fa-download"></i> 485驱动
+                            <i class="fas fa-download"></i> CP210x 485驱动
+                        </a>
+                    </div>
+                    <div class="driver-item">
+                        <a href="./Resource/创新科技红色CAN USB驱动安装工具Setup(V1.40).exe" target="_blank" class="driver-btn">
+                            <i class="fas fa-download"></i> 创新科技红色CAN卡驱动
                         </a>
                     </div>
                 </div>
@@ -682,8 +687,9 @@
                 title: 'LIVOLTEK软件下载',
                 footer: '版权所有 &copy; 2025 LIVOLTEK软件下载中心',
                 download: '下载',
-                driver1: 'USBCANII驱动',
-                driver2: '485驱动',
+                driver1: 'ZLG CAN卡驱动',
+                driver2: 'CP210x 485驱动',
+                driver3: '创新科技红色CAN卡驱动',
                 pcTab: '上位机下载',
                 driverTab: '驱动下载',
                 modeBtn: {
@@ -691,21 +697,22 @@
                     light: '<i class="fas fa-moon"></i>黑夜模式'
                 },
                 items: [
-                    {name: 'BLF-B51100', desc: '适配自研低压电池系列，支持BMS数据实时监控、参数配置、故障诊断等功能，适用于BLF-B5100系列产品。'},
+                    {name: 'LIVOLTEK自研低压电池上位机', desc: '适配自研低压电池系列，支持BMS数据实时监控、参数配置、故障诊断等功能，适用于BLF-B5100系列产品。替换原先的BMSTool上位机软件。'},
                     {name: 'BLF-B52200', desc: '高压电池管理系统上位机软件，支持多模块并联管理，提供完整的电池生命周期管理解决方案。'},
                     {name: 'BLF-C61300', desc: '储能系统专用上位机，支持能量管理、充放电策略配置、历史数据查询等功能，适用于工商业储能场景。'},
                     {name: 'BLF-D71400', desc: '动力电池测试平台配套软件，支持充放电测试、性能分析、报告生成等功能，满足研发测试需求。'},
                     {name: 'BLF-E82500', desc: '新一代电池管理平台，集成AI算法，支持预测性维护、能效优化等高级功能，适用于智能微网系统。'},
                     {name: 'BLF-F93600', desc: '便携式电池检测工具配套软件，支持蓝牙连接，提供快速诊断和现场维护功能，适用于售后服务场景。'}
                 ],
-                versions: ['v3.2.1', 'v2.8.5', 'v4.1.0', 'v1.5.2', 'v5.0.0', 'v2.3.7']
+                versions: ['v2.0.0', 'v2.8.5', 'v4.1.0', 'v1.5.2', 'v5.0.0', 'v2.3.7']
             },
             en: {
                 title: 'LIVOLTEK Software Download',
                 footer: 'All rights reserved &copy; 2025 LIVOLTEK Software Download Center',
                 download: 'Download',
-                driver1: 'USBCANII Driver',
-                driver2: '485 Driver',
+                driver1: 'ZLG CAN Driver',
+                driver2: 'CP210x 485 Driver',
+                driver3: 'Innovative Technology Red CAN Driver',
                 pcTab: 'PC Software',
                 driverTab: 'Drivers',
                 modeBtn: {
@@ -713,21 +720,22 @@
                     light: '<i class="fas fa-moon"></i>Dark Mode'
                 },
                 items: [
-                    {name: 'BLF-B51100', desc: 'Compatible with our low-voltage battery series, supporting real-time BMS monitoring, parameter configuration, fault diagnosis, etc. Suitable for BLF-B5100 series products.'},
+                    {name: 'LIVOLTEK LV BMS Upper', desc: 'Compatible with our self-developed low-voltage battery series, supporting real-time BMS data monitoring, parameter configuration, fault diagnosis and other functions. Suitable for BLF-B5100 series products. Replaces the original BMSTool PC software.'},
                     {name: 'BLF-B52200', desc: 'High-voltage BMS PC software, supporting multi-module parallel management, providing complete battery lifecycle management solutions.'},
                     {name: 'BLF-C61300', desc: 'Dedicated software for energy storage systems, supporting energy management, charge/discharge strategy configuration, historical data query, suitable for commercial & industrial energy storage scenarios.'},
                     {name: 'BLF-D71400', desc: 'Power battery testing platform software, supporting charge/discharge testing, performance analysis, report generation, meeting R&D testing requirements.'},
                     {name: 'BLF-E82500', desc: 'Next-gen battery management platform with AI algorithms, supporting predictive maintenance, energy efficiency optimization, suitable for smart microgrid systems.'},
                     {name: 'BLF-F93600', desc: 'Portable battery diagnostic tool software, supporting Bluetooth connection, providing quick diagnosis and field maintenance, suitable for after-sales service scenarios.'}
                 ],
-                versions: ['v3.2.1', 'v2.8.5', 'v4.1.0', 'v1.5.2', 'v5.0.0', 'v2.3.7']
+                versions: ['v2.0.0', 'v2.8.5', 'v4.1.0', 'v1.5.2', 'v5.0.0', 'v2.3.7']
             },
             es: {
                 title: 'Descarga de Software LIVOLTEK',
                 footer: 'Todos los derechos reservados &copy; 2025 Centro de Descarga de Software LIVOLTEK',
                 download: 'Descargar',
-                driver1: 'Controlador USBCANII',
-                driver2: 'Controlador 485',
+                driver1: 'Controlador ZLG CAN',
+                driver2: 'Controlador 485 CP210x',
+                driver3: 'Controlador CAN Rojo de Tecnología Innovadora',
                 pcTab: 'Software de PC',
                 driverTab: 'Controladores',
                 modeBtn: {
@@ -735,14 +743,14 @@
                     light: '<i class="fas fa-moon"></i>Modo Oscuro'
                 },
                 items: [
-                    {name: 'BLF-B51100', desc: 'Compatible con nuestra serie de baterías de baja tensión, soporta monitoreo en tiempo real del BMS, configuración de parámetros, diagnóstico de fallas, etc. Adecuado para productos de la serie BLF-B5100.'},
+                    {name: 'LIVOLTEK LV BMS Upper', desc: 'ompatible con nuestra serie de baterías de baja tensión de desarrollo propio, que admite funciones como monitorización de datos BMS en tiempo real, configuración de parámetros, diagnóstico de fallos, etc. Adecuado para productos de la serie BLF-B5100. Sustituye al software original BMSTool para PC.'},
                     {name: 'BLF-B52200', desc: 'Software de PC para BMS de alta tensión, compatible con gestión paralela de múltiples módulos, proporcionando soluciones completas de gestión del ciclo de vida de la batería.'},
                     {name: 'BLF-C61300', desc: 'Software dedicado para sistemas de almacenamiento de energía, compatible con gestión de energía, configuración de estrategias de carga/descarga, consulta de datos históricos, adecuado para escenarios de almacenamiento de energía comercial e industrial.'},
                     {name: 'BLF-D71400', desc: 'Software de plataforma de prueba de baterías de potencia, compatible con pruebas de carga/descarga, análisis de rendimiento, generación de informes, que cumple con los requisitos de prueba de I+D.'},
                     {name: 'BLF-E82500', desc: 'Plataforma de gestión de baterías de próxima generación con algoritmos de IA, compatible con mantenimiento predictivo, optimización de eficiencia energética, adecuada para sistemas de microrredes inteligentes.'},
                     {name: 'BLF-F93600', desc: 'Software de herramienta de diagnóstico de baterías portátil, compatible con conexión Bluetooth, proporcionando diagnóstico rápido y mantenimiento en campo, adecuado para escenarios de servicio postventa.'}
                 ],
-                versions: ['v3.2.1', 'v2.8.5', 'v4.1.0', 'v1.5.2', 'v5.0.0', 'v2.3.7']
+                versions: ['v2.0.0', 'v2.8.5', 'v4.1.0', 'v1.5.2', 'v5.0.0', 'v2.3.7']
             }
         };
 
@@ -812,6 +820,9 @@
             }
             if (driverBtns.length >= 2) {
                 driverBtns[1].innerHTML = `<i class="fas fa-download"></i>${i18n[lang].driver2}`;
+            }
+            if (driverBtns.length >= 3) {  // 新增对第三个按钮的处理
+                driverBtns[2].innerHTML = `<i class="fas fa-download"></i>${i18n[lang].driver3}`;
             }
             
             // 更新软件项目信息
