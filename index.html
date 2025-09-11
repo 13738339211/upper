@@ -697,7 +697,12 @@
                     </div>
                     <div class="driver-item">
                         <a href="./Resource/创新科技红色CAN USB驱动安装工具Setup(V1.40).exe" target="_blank" class="driver-btn">
-                            <i class="fas fa-download"></i> 创新科技红色CAN卡驱动
+                            <i class="fas fa-download"></i> 创新科技 CANAlyst-II驱动
+                        </a>
+                    </div>
+                    <div class="driver-item">
+                        <a href="./Resource/Driver/FTDIDrive.zip" target="_blank" class="driver-btn">
+                            <i class="fas fa-download"></i> Dtech迪特 485驱动
                         </a>
                     </div>
                 </div>
@@ -746,7 +751,8 @@
                 info: '介绍',
                 driver1: 'ZLG CAN卡驱动',
                 driver2: 'CP210x 485驱动',
-                driver3: '创新科技红色CAN卡驱动',
+                driver3: '创新科技 CANAlyst-II驱动',
+                driver4: 'Dtech迪特 485驱动',
                 pcTab: '上位机下载',
                 driverTab: '驱动下载',
                 modeBtn: {
@@ -771,6 +777,7 @@
                 driver1: 'ZLG CAN Driver',
                 driver2: 'CP210x 485 Driver',
                 driver3: 'Innovative Technology Red CAN Driver',
+                driver4: 'Dtech 485 Driver',
                 pcTab: 'PC Software',
                 driverTab: 'Drivers',
                 modeBtn: {
@@ -795,6 +802,7 @@
                 driver1: 'Controlador ZLG CAN',
                 driver2: 'Controlador 485 CP210x',
                 driver3: 'Controlador CAN Rojo de Tecnología Innovadora',
+                driver4: 'Controlador 485 Dtech',
                 pcTab: 'Software de PC',
                 driverTab: 'Controladores',
                 modeBtn: {
@@ -887,6 +895,9 @@
             }
             if (driverBtns.length >= 3) {  // 新增对第三个按钮的处理
                 driverBtns[2].innerHTML = `<i class="fas fa-download"></i>${i18n[lang].driver3}`;
+            }
+            if (driverBtns.length >= 4) {  // 新增对第四个按钮的处理
+                driverBtns[3].innerHTML = `<i class="fas fa-download"></i>${i18n[lang].driver4}`;
             }
             
             // 更新软件项目信息
