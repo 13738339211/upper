@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>离职告别</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #3498db, #2ecc71, #e74c3c);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.5s;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 1s;
+        }
+        
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: left;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 1.5s;
+        }
+        
+        .highlight {
+            background-color: #fffacd;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .signature {
+            text-align: right;
+            margin-top: 40px;
+            font-style: italic;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 2s;
+        }
+        
+        .contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed #ddd;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 2.5s;
+        }
+        
+        .goodbye {
+            margin-top: 30px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #e74c3c;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 3s;
+        }
+        
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #3498db;
+            opacity: 0;
+            animation: bounceIn 1s ease forwards 0.2s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .message {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">👋</div>
+        <h1>我已离职</h1>
+        <p class="subtitle">感谢您使用我开发的自研低压上位机软件HXLVBMSTool</p>
+        
+        <div class="message">
+            <p>亲爱的用户：</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;感谢您一直以来对我开发的上位机软件的支持与使用。在过去的时光里，我倾注了心血与热情，致力于为您提供稳定、高效的解决方案。</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如今，我已开启新的职业旅程。在离开之前，我已执行了清理程序，确保系统资源的妥善处理。</p>
+        </div>
+        
+        <div class="contact">
+            <p>📧 技术支持邮箱: tongyong.li@hxgroup.com</p>
+            <p>📞 服务热线: Null</p>
+        </div>
+        
+        <div class="goodbye">
+            祝您工作顺利，再见！
+        </div>
+        
+        <div class="signature">
+            <p>—— 前C#上位机义务开发人员(80016657)</p>
+        </div>
+    </div>
+
+    <script>
+        // 添加页面加载完成后的额外效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加背景粒子效果
+            createParticles();
+        });
+        
+        function createParticles() {
+            const container = document.querySelector('.container');
+            const colors = ['#3498db', '#2ecc71', '#e74c3c', '#f39c12', '#9b59b6'];
+            
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = Math.random() * 6 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.borderRadius = '50%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
+                particle.style.pointerEvents = 'none';
+                particle.style.zIndex = '-1';
+                
+                container.appendChild(particle);
+                
+                // 添加浮动动画
+                animateParticle(particle);
+            }
+        }
+        
+        function animateParticle(particle) {
+            let x = parseFloat(particle.style.left);
+            let y = parseFloat(particle.style.top);
+            let xSpeed = (Math.random() - 0.5) * 0.5;
+            let ySpeed = (Math.random() - 0.5) * 0.5;
+            
+            function move() {
+                x += xSpeed;
+                y += ySpeed;
+                
+                // 边界检测
+                if (x <= 0 || x >= 100) xSpeed *= -1;
+                if (y <= 0 || y >= 100) ySpeed *= -1;
+                
+                particle.style.left = x + '%';
+                particle.style.top = y + '%';
+                
+                requestAnimationFrame(move);
+            }
+            
+            move();
+        }
+    </script>
+</body>
+</html>
