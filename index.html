@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>软件下载中心</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        .welcome-container {
+            text-align: center;
+            padding: 60px 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            max-width: 600px;
+            width: 90%;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        
+        .main-text {
+            color: #333;
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        
+        .sub-text {
+            color: #666;
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+        
+        .software-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .software-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .software-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .software-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+        
+        .icon-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .icon-2 { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .icon-3 { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .icon-4 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        
+        .software-name {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        @media (max-width: 768px) {
+            .main-text {
+                font-size: 2.5rem;
+            }
+            
+            .software-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .welcome-container {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <div class="logo">S</div>
+        <h1 class="main-text">欢迎下载</h1>
+        <p class="sub-text">精选软件 · 安全可靠</p>
+        
+        <div class="software-grid">
+            <div class="software-item">
+                <div class="software-icon icon-1">📊</div>
+                <div class="software-name">数据分析工具</div>
+            </div>
+            <div class="software-item">
+                <div class="software-icon icon-2">🎨</div>
+                <div class="software-name">设计助手</div>
+            </div>
+            <div class="software-item">
+                <div class="software-icon icon-3">🔒</div>
+                <div class="software-name">安全卫士</div>
+            </div>
+            <div class="software-item">
+                <div class="software-icon icon-4">⚡</div>
+                <div class="software-name">效率工具</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
